@@ -5,11 +5,13 @@ function createPerson(id, firstName, lastName) {
     return {id, firstName, lastName};
 }
 const my_person = createPerson(123, 'Moshe', 'Mishin')
+
 function displayPerson() {
     console.log(`id = ${this.id}, firstName = ${this.firstName}`);
 }
 const my_point = createPoint(3, 4);
 const his_point = createPoint(5, 6);
+
 function displayPoint(z, t) {
     console.log(`x=${this.x}; y=${this.y}; z=${z}; t=${t}`);
 }
