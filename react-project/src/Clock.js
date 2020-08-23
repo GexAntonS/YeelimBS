@@ -1,10 +1,9 @@
 import React from "react";
-const words = ['aaa', 'bbb', 'ccc']
-// let index = -1; //
+
+const words = ['abc', 'lmn', 'ddd','fff','zzz'];
 export default class Clock extends React.Component {
     constructor(props) {
         super(props);
-        this.index = -1;
         this.state = {
             date: new Date(),
             word: words[0]
@@ -12,26 +11,23 @@ export default class Clock extends React.Component {
     }
 
     tick() {
-        this.index++
-        if(this.index === words.length){
-            this.index = 0;
-        }
+        let index = getRandomInt(0, words.length);
         this.setState({
             date: new Date(),
-            word: words[this.index]
+            word: words[index]
         })
     }
+
     componentDidMount() {
         this.intervalId = setInterval(this.tick.bind(this),
             this.props.interval || 1000)
     }
+
     componentWillUnmount() {
         clearInterval(this.intervalId)
     }
 
-
-    render () {
-        console.log('kuku')
+    render() {
         return <div className="App">
             <img src={'logo192.png'}/>
             <h1>Welcome {this.props.name}</h1>
@@ -40,5 +36,10 @@ export default class Clock extends React.Component {
             <h4>{this.state.word}</h4>
         </div>
     }
+}
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
 }
